@@ -5,6 +5,15 @@
         </h2>
         <h1><%= @house[:address] %></h1>
         <p><%= @house[:description] %></p>
+        <p>
+            <iframe
+            width="600"
+            height="450"
+            frameborder="0" style="border:0"
+            src="https://www.google.com/maps" allowfullscreen>
+            </iframe>
+        </p>
+
         
     </div>
         <div class="col-sm-3">
@@ -18,9 +27,17 @@
             </p>
 
         </div>
-
-    <p class="mt-5">
-            <a href="/houses/<%= @house[:id] %>/reviews/new" class="btn btn-warning">Leave a review now!</a>
-        </p>
+</div>
+<div>
+    <h4>Tell others about this house -->
+        <class="mt-5">
+            <a href="/houses/<%= @house[:id] %>/reviews/new" class="btn btn-warning">Leave a review!</a>
+    </h4>
 </div>
 
+<div>
+    <h4>No candy at this house -->
+        <class="mt-5">
+            <a href="/nocandy" class="btn btn-danger">Sound the alarm!</a>
+    </h4>
+</div>
