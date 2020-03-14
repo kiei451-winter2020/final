@@ -31,6 +31,10 @@ end
 
 get "/houses/:id" do
     @house = houses_table.where(id: params[:id]).first
+    @full_address = "#{@house[:address]}, #{@house[:city_state_zip]}"
+    results = Geocoder.search(@full_address)
+    lat_long = results.first.coordinates
+    @lat_long = "#{lat_long[0]},#{lat_long[1]}"
     @candy_avg = reviews_table.where(house_id: @house[:id]).avg(:candy)
     @decorations_avg = reviews_table.where(house_id: @house[:id]).avg(:decorations)
     @recommend_count = reviews_table.where(house_id: @house[:id], recommend: true).count
@@ -55,6 +59,17 @@ get '/houses/:id/reviews/create' do
 end
 
 get "/nocandy" do
+    account_sid = "ACf3e455ac91ddabf450ceba1654c65537"
+    auth_token = "9508e52fb106e4ef4627af46228772a1"
+    client = Twilio::REST::Client.new(account_sid, auth_token)
+
+    
+    client.messages.create(
+        from: "+12055578479", 
+        to: "+18186405257",
+        body: "Skip this house.. there’s no candy left!"
+    )    
+    
     view "no_candy"
 end
 
