@@ -7,33 +7,33 @@
         <h1><%= @course[:title] %></h1>
         <p><%= @course[:description] %></p>
 
-        <% for rsvp in @rsvps %>
+        <% for review in @reviews %>
             <div class="media">
-                <% if rsvp[:going] %>
+                <% if review[:going] %>
                     <i class="fas fa-thumbs-up fa-3x mr-3"></i>
                 <% else %>
                     <i class="fas fa-thumbs-down fa-3x mr-3"></i>
                 <% end %>
                 <div class="media-body">
                     <h5 class="mt-0">
-                        <%= @users_table.where(id: rsvp[:user_id]).to_a[0][:name] %>
+                        <%= @users_table.where(id: review[:user_id]).to_a[0][:name] %>
 
                         <small>
-                            <!-- only show these links if it's my rsvp -->
-                            <% if @current_user && @current_user[:id] == rsvp[:user_id] %>
-                                (<a href="/rsvps/<%= rsvp[:id] %>/edit">edit</a> | <a href="/rsvps/<%= rsvp[:id] %>/destroy">delete</a>)
+                            <!-- only show these links if it's my review -->
+                            <% if @current_user && @current_user[:id] == review[:user_id] %>
+                                (<a href="/reviews/<%= review[:id] %>/edit">edit</a> | <a href="/reviews/<%= review[:id] %>/destroy">delete</a>)
                             <% end %>
                         </small>
                     </h5>
-                    <%= rsvp[:comments] %>
+                    <%= review[:comments] %>
                 </div>
             </div>
         <% end %>
         <p class="mt-5">
             <% if @current_user %>
-                <a href="/courses/<%= @course[:id] %>/rsvps/new" class="btn btn-primary">RSVP now!</a>
+                <a href="/courses/<%= @course[:id] %>/reviews/new" class="btn btn-primary">review now!</a>
             <% else %>
-                <a href="/logins/new" class="btn btn-danger">Please sign in to RSVP</a>
+                <a href="/logins/new" class="btn btn-danger">Please sign in to review</a>
             <% end %>
         </p>
     </div>
