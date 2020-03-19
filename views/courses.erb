@@ -1,0 +1,5 @@
+<h1>All courses</h1>
+
+<% for course in @courses %>
+    <p><a href="/courses/<%= course[:id] %>"><%= course[:title] %></a></p>
+<% end %>
