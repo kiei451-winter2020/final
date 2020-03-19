@@ -1,0 +1,21 @@
+<h2>
+    <i class="far fa-calendar-alt"></i>
+    <%= @course[:date] %>
+</h2>
+<h1>review for <%= @course[:title] %></h1>
+
+<form action="/courses/<%= @course[:id] %>/reviews/create" method="post">
+  <div class="form-group">
+    <label>Are you going?</label>
+    <select class="form-control" name="going">
+      <option value="1">Yes</option>
+      <option value="0">No</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>Comments</label>
+    <textarea class="form-control" rows="3" name="comments"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
