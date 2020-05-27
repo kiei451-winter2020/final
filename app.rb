@@ -4,6 +4,7 @@ require "sinatra/reloader" if development?                                      
 require "sequel"                                                                      #
 require "logger"                                                                      #
 require "twilio-ruby"                                                                 #
+require "geocoder"                                                                      #
 require "bcrypt"                                                                      #
 connection_string = ENV['DATABASE_URL'] || "sqlite://#{Dir.pwd}/development.sqlite3"  #
 DB ||= Sequel.connect(connection_string)                                              #
@@ -14,5 +15,5 @@ before { puts; puts "--------------- NEW REQUEST ---------------"; puts }       
 after { puts; }                                                                       #
 #######################################################################################
 
-events_table = DB.from(:events)
-rsvps_table = DB.from(:rsvps)
+# events_table = DB.from(:events)
+# rsvps_table = DB.from(:rsvps)
